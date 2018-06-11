@@ -46,7 +46,7 @@ compileTestKotlin {
 
 println(System.getProperty("user.dir"))
 
-mainClassName = "server.StartKt"
+mainClassName = "server.BaseKt"
 sourceCompatibility = 1.8
 
 shadowJar {
