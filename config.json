@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "Kafka Connect Monit",
+    "port": 8080
+  },
+  "clusters": [{
+    "name": "uds",
+    "hosts": ["10.51.1.155", "10.51.1.165"],
+    "port": 80
+  },
+    {
+      "name": "clickstream",
+      "hosts": ["10.51.1.155", "10.51.1.165"],
+      "port": 80
+    }]
+}
