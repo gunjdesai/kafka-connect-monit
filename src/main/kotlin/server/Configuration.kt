@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 internal fun configure(): Config {
 
 	try {
-		return readJsonConfig("config.json")
+		return readJsonConfig("src/main/kotlin/examples/config.json")
 	} catch (e: NullPointerException) {
 		println("configuration file not found")
 		exitProcess(0)

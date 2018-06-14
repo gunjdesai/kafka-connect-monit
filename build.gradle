@@ -56,5 +56,11 @@ shadowJar {
     version = 0.1
 }
 
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
+
 defaultTasks 'clean', 'shadowJar'
 
