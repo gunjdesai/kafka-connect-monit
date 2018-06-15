@@ -1,9 +1,9 @@
 package config
 
 
-internal data class Config(
-		val app: Application,
-		val clusters: List<Cluster>
+internal data class Config (
+	val app: Application,
+	val clusters: List<Cluster>
 )
 
 
