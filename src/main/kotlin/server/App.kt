@@ -12,7 +12,7 @@ internal fun application(config: Config) {
 	webClient = WebClient.create(vertx)
 
 
-	server.requestHandler({ router.accept(it) })
+	server.requestHandler { router.accept(it) }
 			.listen(config.app.port)
 
 	println("Application: ${config.app.name}, started on port: ${config.app.port}")
