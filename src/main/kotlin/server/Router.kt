@@ -9,7 +9,7 @@ internal fun routing(vertx: Vertx): Router {
 
 	val router = Router.router(vertx)
 
-	router.get("/").handler { ctx -> base(ctx) }
+	router.get("/").asyncHandler { ctx -> base(ctx) }
 
 	return router
 

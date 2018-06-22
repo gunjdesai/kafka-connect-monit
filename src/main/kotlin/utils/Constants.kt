@@ -8,3 +8,8 @@ object HTTP_ROUTE_FORMAT{
 	const val JSON = "application/json; charset=utf-8"
 }
 
+object HTTP_RESPONSE_CODES{
+	const val SERVER_ERROR = 500
+	const val SUCCESS = 200
+}
+

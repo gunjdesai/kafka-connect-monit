@@ -1,15 +1,14 @@
 package server
 
 import config.Config
-import io.vertx.ext.web.client.WebClient
+import utils.HttpRequest
 import kotlin.system.exitProcess
 
 
 internal lateinit var config: Config
-internal lateinit var webClient: WebClient
+internal val httpClient = HttpRequest()
 
 fun main(args: Array<String>) {
-
 
 	try {
 		config = configure()
