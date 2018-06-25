@@ -1,20 +1,27 @@
 package handlers
 
 
+import controllers.clusterStatus
+import controllers.connectorsListing
 import io.vertx.ext.web.RoutingContext
 import server.config
 import utils.ResultBuilder
 
-suspend fun base(ctx: RoutingContext){
+internal suspend fun base(ctx: RoutingContext): ResultBuilder {
 
 	val response = ctx.response()
+	val clusterStatus = clusterStatus(config.clusters)
+	val connectorsListing = connectorsListing(clusterStatus)
+	//val sendAlertMail
 
-	ResultBuilder(response).apply {
-		setJsonHeader();
-		statusCode(200);
-		createPayload(config);
+	return ResultBuilder(response).apply {
+		setJsonHeader()
+		statusCode(200)
+		createPayload(connectorsListing)
 		end()
 	}
+
+
 
 
 }
