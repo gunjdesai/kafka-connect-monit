@@ -5,6 +5,7 @@ import data.Connect
 import data.Connector
 import server.httpClient
 import utils.HTTP_RESPONSE_CODES
+import utils.WORKER_STATE
 
 internal suspend fun connectorsListing(connect: Connect): Connect {
 
@@ -48,7 +49,7 @@ internal suspend fun getConnectorsList(host: String, port: Int, connectors: List
 			if (connectorInfo != null)
 				connectorsList.add(connectorInfo)
 			else
-				connectorsList.add(Connector(name = connector, state = "FAILED"))
+				connectorsList.add(Connector(name = connector, state = WORKER_STATE.FAILED))
 
 		}
 		connectorsList

@@ -8,6 +8,7 @@ internal fun application(config: Config) {
 	val vertx = Vertx.vertx()
 	val server = vertx.createHttpServer()
 	val router = routing(vertx)
+	//val mailer
 
 	server.requestHandler { router.accept(it) }
 			.listen(config.app.port)
