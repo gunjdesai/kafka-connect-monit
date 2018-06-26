@@ -1,13 +1,15 @@
 package server
 
 import config.Config
+import utils.CONFIG_FILE_LOCATION
+import utils.CONFIG_FILE_NAME
 import utils.readJsonConfig
 import kotlin.system.exitProcess
 
 internal fun configure(): Config {
 
 	try {
-		return readJsonConfig("src/main/kotlin/examples/config.json")
+		return readJsonConfig(CONFIG_FILE_LOCATION + CONFIG_FILE_NAME)
 	} catch (e: NullPointerException) {
 		println("configuration file not found")
 		exitProcess(0)

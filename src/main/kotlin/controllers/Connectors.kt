@@ -23,8 +23,8 @@ internal suspend fun connectorsApi(host: String, port: Int, connectorName: Strin
 }
 
 fun checkConnectorHealth(connector: Connector){
-	if (connector.connector.state != WORKER_STATE.RUNNING ||
-		connector.connector.state != WORKER_STATE.PAUSED ||
+	if (connector.connector.state != WORKER_STATE.RUNNING &&
+		connector.connector.state != WORKER_STATE.PAUSED &&
 		connector.connector.state != WORKER_STATE.STOPPED)
 		connectorDown(connector.name)
 
@@ -37,8 +37,8 @@ fun checkConnectorHealth(connector: Connector){
 fun checkTaskHealth(tasks: List<Tasks>, connectorName: String){
 
 	for (task in tasks)
-		if (task.state != WORKER_STATE.RUNNING ||
-			task.state != WORKER_STATE.PAUSED ||
+		if (task.state != WORKER_STATE.RUNNING &&
+			task.state != WORKER_STATE.PAUSED &&
 			task.state != WORKER_STATE.STOPPED)
 			taskDown(task.id, connectorName)
 }

@@ -1,5 +1,8 @@
 package utils
 
+const val CONFIG_FILE_LOCATION = "/home/code/"
+const val CONFIG_FILE_NAME = "config.json"
+
 object HTTP_ROUTE_FORMAT {
 	const val CONTENT_TYPE = "Content-Type"
 	const val JSON = "application/json; charset=utf-8"

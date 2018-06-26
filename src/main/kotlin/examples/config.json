@@ -3,14 +3,17 @@
     "name": "Kafka Connect Monit",
     "port": 8080
   },
-  "clusters": [{
-    "name": "uds",
-    "hosts": ["10.51.1.155", "10.51.1.165"],
-    "port": 80
+  "mail": {
+    "hostname": "smtp.gmail.com",
+    "port": 25,
+    "from": "sender@gmai;.com",
+    "to": ["reciever1@gmail.com", "reciever2@gmail.com", "reciever3@gmail.com"],
+    "ssl": false
   },
-    {
-      "name": "clickstream",
-      "hosts": ["10.51.1.155", "10.51.1.165"],
-      "port": 80
-    }]
+  "clusters": [{
+    "name": "Warehouse Kafka Connect Cluster",
+    "hosts": ["192.168.1.1", "192.168.1.2"],
+    "port": 80
+  }],
+  "recursion_interval": 300000
 }
