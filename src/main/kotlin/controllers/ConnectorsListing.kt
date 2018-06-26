@@ -3,6 +3,7 @@ package controllers
 import com.google.gson.Gson
 import data.Connect
 import data.Connector
+import data.ConnectorInfo
 import server.httpClient
 import utils.HTTP_RESPONSE_CODES
 import utils.WORKER_STATE
@@ -43,18 +44,24 @@ internal suspend fun getConnectorsList(host: String, port: Int, connectors: List
 
 	return if (connectors != null){
 		val connectorsList: MutableList<Connector> = mutableListOf()
+
 		for (connector in connectors){
 			val connectorInfo = connectorsApi(host, port, connector)
 
-			if (connectorInfo != null)
+			if (connectorInfo != null){
 				connectorsList.add(connectorInfo)
-			else
-				connectorsList.add(Connector(name = connector, state = WORKER_STATE.FAILED))
+			}
+			else {
+				connectorStatusUnavailable(connector)
+				connectorsList.add(Connector(name = connector, state = WORKER_STATE.FAILED,
+						connector = ConnectorInfo(state = WORKER_STATE.FAILED)))
+			}
 
 		}
+
 		connectorsList
-	} else{
-		null
 	}
+	else
+		null
 
 }

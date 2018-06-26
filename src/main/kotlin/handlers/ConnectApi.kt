@@ -12,10 +12,8 @@ import server.mailClient
 internal suspend fun connectApi(): Connect {
 
 	val clusterStatus = clusterStatus(config.clusters)
-	val connectorsListing = connectorsListing(clusterStatus)
-	mailClient.send(text = "Alert Mail")
+	return connectorsListing(clusterStatus)
 
-	return connectorsListing
 }
 
 

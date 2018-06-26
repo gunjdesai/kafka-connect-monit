@@ -38,6 +38,7 @@ internal suspend fun statusApi(host: String, port: Int): Status{
 		status.port = port
 	}
 	else{
+		hostDown(host = host, port = port)
 		status = Status(host = host, port = port, isOperational = false)
 	}
 

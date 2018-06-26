@@ -20,7 +20,7 @@ internal class Mailer(vertx: Vertx, mail: Mail?) {
 			val config = MailConfig()
 			config.hostname = mail.hostname
 			config.port = mail.port
-			config.isSsl = true
+			config.isSsl = mail.isSsl
 
 
 			if (mail.username != null && mail.password != null){
@@ -37,7 +37,7 @@ internal class Mailer(vertx: Vertx, mail: Mail?) {
 
 	}
 
-	fun send(from: String? = sendFrom, to: List<String>? = mailTo, text: String? = null, html: String? = null) {
+	fun send(from: String? = sendFrom, to: List<String>? = mailTo, subject: String,  text: String) {
 
 		if (client == null)
 			return
@@ -45,13 +45,8 @@ internal class Mailer(vertx: Vertx, mail: Mail?) {
 		val message = MailMessage()
 		message.from = from
 		message.to = to
-
-		if (text != null)
-			message.text = text
-
-		if (html != null)
-			message.html = html
-
+		message.subject = subject
+		message.text = text
 
 		client!!.sendMail(message) { result ->
 			if (result.succeeded())

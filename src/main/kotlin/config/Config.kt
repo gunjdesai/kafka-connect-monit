@@ -28,5 +28,6 @@ internal data class Mail(
 	val username: String? = null,
 	val password: String? = null,
 	val from: String,
-	val to: List<String>
+	val to: List<String>,
+	@SerializedName("ssl") val isSsl: Boolean = false
 )
