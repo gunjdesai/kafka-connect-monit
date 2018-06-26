@@ -18,12 +18,12 @@ data class Connector(
 		val state: String,
 		val type: String? = null,
 		val tasks: List<Tasks>? = null,
-		val connector: ConnectorInfo? = null
+		val connector: ConnectorInfo
 )
 
 data class ConnectorInfo(
 		val state: String,
-		@SerializedName("worker_id") val workerId: String
+		@SerializedName("worker_id") val workerId: String? = null
 )
 
 data class Tasks(

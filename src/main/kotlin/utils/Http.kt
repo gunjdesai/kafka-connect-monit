@@ -55,11 +55,15 @@ class DeferredFuture: Callback{
 			println(e)
 			HttpResponse(code = response.code(), body = null, error = "Error Unknown")
 		}
+		catch (e: IOException){
+			println("Unable to connect to the host")
+			println(e)
+			HttpResponse(code = response.code(), body = null, error = "Unable to connect to the host")
+		}
 
 		deferred.complete(result)
 
 	}
-
 
 
 }
