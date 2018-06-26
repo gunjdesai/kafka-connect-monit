@@ -20,11 +20,16 @@ internal class Mailer(vertx: Vertx, mail: Mail?) {
 			val config = MailConfig()
 			config.hostname = mail.hostname
 			config.port = mail.port
-			config.username = mail.username
-			config.password = mail.password
-			config.login = LoginOption.REQUIRED
-			config.authMethods = "PLAIN"
 			config.isSsl = true
+
+
+			if (mail.username != null && mail.password != null){
+				config.username = mail.username
+				config.password = mail.password
+				config.login = LoginOption.REQUIRED
+				config.authMethods = "PLAIN"
+			}
+
 
 			client = MailClient.createNonShared(vertx, config)
 
@@ -47,10 +52,8 @@ internal class Mailer(vertx: Vertx, mail: Mail?) {
 		if (html != null)
 			message.html = html
 
-		println("Send Mail Attempt")
+
 		client!!.sendMail(message) { result ->
-			println(result)
-			println("Send Mail Async Result")
 			if (result.succeeded())
 				println("Mail Sent")
 			else

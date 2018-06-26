@@ -13,7 +13,7 @@ internal suspend fun connectApi(): Connect {
 
 	val clusterStatus = clusterStatus(config.clusters)
 	val connectorsListing = connectorsListing(clusterStatus)
-	//mailClient.send(text = "Alert Mail")
+	mailClient.send(text = "Alert Mail")
 
 	return connectorsListing
 }
@@ -27,7 +27,7 @@ internal fun connectRecursion() {
 		connect = connectApi()
 		delay(config.recursionInterval)
 		connectRecursion()
-		
+
 	}
 
 }
