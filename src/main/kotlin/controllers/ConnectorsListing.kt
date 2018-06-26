@@ -10,9 +10,9 @@ import utils.WORKER_STATE
 internal suspend fun connectorsListing(connect: Connect): Connect {
 
 	for (cluster in connect.clusters) {
-		val connectors: MutableList<Connector> = mutableListOf()
 
 		for (node in cluster.nodes)
+
 			if (node.isOperational) {
 				cluster.connectors = getConnectorsList(
 						host = node.host,

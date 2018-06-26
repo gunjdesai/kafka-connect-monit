@@ -2,11 +2,11 @@ package config
 
 import com.google.gson.annotations.SerializedName
 
-
 internal data class Config (
 	val app: Application,
 	val clusters: List<Cluster>,
-	val mail: Mail? = null
+	val mail: Mail? = null,
+	@SerializedName("recursion_interval") val recursionInterval: Int = 300000
 )
 
 
@@ -25,9 +25,8 @@ internal data class Cluster(
 internal data class Mail(
 	val hostname: String,
 	val port: Int,
-	val username: String,
-	val password: String,
+	val username: String? = null,
+	val password: String? = null,
 	val from: String,
-	val to: String,
-	@SerializedName("use_tls") val useTls: Boolean = false
+	val to: List<String>
 )
