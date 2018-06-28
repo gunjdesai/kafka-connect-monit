@@ -1,4 +1,5 @@
 group 'com.gunjdesai'
+version '0.1'
 
 buildscript {
     ext.kotlin_version = '1.2.50'
@@ -12,13 +13,17 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
+
     }
+
 }
 
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: "java"
 apply plugin: "kotlin"
 apply plugin: 'application'
+apply plugin: "com.jfrog.bintray"
 
 repositories {
     mavenCentral()
@@ -47,14 +52,13 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-println(System.getProperty("user.dir"))
-
 mainClassName = "server.BaseKt"
 sourceCompatibility = 1.8
 
 shadowJar {
     baseName = 'kafka-connect-monit'
     classifier = null
+    description = "Monitoring Tool for a Kafka Connect Cluster"
     version = 0.1
 }
 
@@ -64,5 +68,20 @@ kotlin {
     }
 }
 
-defaultTasks 'clean', 'shadowJar'
+bintray {
+    user = user
+    key = key
+    pkg {
+        repo = 'libs'
+        name = 'kafka-connect-monit'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/gunjdesai/kafka-connect-monit.git'
+        version {
+            name = project.version
+            userOrg = "gunjdesai"
+            description = project.description
+            released  = new Date()
+        }
+    }
+}
 
