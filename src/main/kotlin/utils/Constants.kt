@@ -17,6 +17,7 @@ object WORKER_STATE {
 	const val RUNNING = "RUNNING"
 	const val PAUSED = "PAUSED"
 	const val STOPPED = "STOPPED"
+	const val UNASSIGNED = "UNASSIGNED"
 	const val FAILED = "FAILED"
 }
 

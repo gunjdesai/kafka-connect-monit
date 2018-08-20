@@ -25,6 +25,7 @@ internal suspend fun connectorsApi(host: String, port: Int, connectorName: Strin
 fun checkConnectorHealth(connector: Connector){
 	if (connector.connector.state != WORKER_STATE.RUNNING &&
 		connector.connector.state != WORKER_STATE.PAUSED &&
+		connector.connector.state != WORKER_STATE.UNASSIGNED &&
 		connector.connector.state != WORKER_STATE.STOPPED)
 		connectorDown(connector.name)
 
