@@ -1,33 +1,31 @@
 package controllers
 
 import server.mailClient
+import server.mailObject
 
 fun hostDown(host: String, port: Int) {
 
 	val text = "Host: ${host} running on port ${port} is down"
-	mailClient.send(subject = "ALERT: ${host} DOWN", text = text)
-
+	mailObject.add(text + "\n")
 }
 
 fun connectorStatusUnavailable(name: String){
 
 	val text = "Unable to fetch status for Connector: ${name}"
-	mailClient.send(subject = "ALERT: Status for ${name} UNAVAILABLE", text = text)
-
+	mailObject.add(text + "\n")
 }
 
 fun taskStatusUnavailable(name: String){
 
 	val text = "Unable to fetch status for tasks of Connector: ${name}"
-	mailClient.send(subject = "ALERT: Task Status for ${name} UNAVAILABLE", text = text)
-
+	mailObject.add(text + "\n")
 }
 
 
 fun connectorDown(name: String) {
 
 	val text = "Connector: ${name} has failed"
-	mailClient.send(subject = "ALERT: Connector ${name} DOWN", text = text)
+	mailObject.add(text + "\n")
 
 }
 
@@ -35,6 +33,17 @@ fun connectorDown(name: String) {
 fun taskDown(taskId: Int, name: String) {
 
 	val text = "Task: ${taskId.toString()}  of Connector: ${name} has failed"
-	mailClient.send(subject = "ALERT: Task ${taskId.toString()} of Connectors:${name} has failed", text = text)
+	mailObject.add(text + "\n")
 
+}
+
+
+fun sendAlerts(){
+
+	var template = ""
+	mailObject.forEach { it -> template += it }
+	println(mailObject)
+	if (mailObject.size > 0)
+		mailClient.send(subject = "Kafka Connect ALERT: Services Affected", text = template)
+		mailObject = arrayListOf()
 }

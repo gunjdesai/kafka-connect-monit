@@ -11,6 +11,7 @@ internal lateinit var config: Config
 internal lateinit var mailClient: Mailer
 internal val httpClient = HttpRequest()
 internal var connect: Connect? = null
+internal var mailObject: MutableList<String> = arrayListOf()
 
 fun main(args: Array<String>) {
 

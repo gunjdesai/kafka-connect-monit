@@ -28,6 +28,9 @@ hs_err_pid*
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/sonarlint
+.idea/*.xml
+.idea/misc.xml
+out
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
