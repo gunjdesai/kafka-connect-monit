@@ -1,14 +1,10 @@
 group 'com.gunjdesai'
-version '0.1'
+version '0.2'
+
 
 buildscript {
-    ext.kotlin_version = '1.2.50'
+    ext.kotlin_version = '1.2.61'
     ext.vertx_version = '3.5.1'
-
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -17,6 +13,10 @@ buildscript {
 
     }
 
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
 }
 
 apply plugin: "com.github.johnrengelman.shadow"
@@ -59,7 +59,7 @@ shadowJar {
     baseName = 'kafka-connect-monit'
     classifier = null
     description = "Monitoring Tool for a Kafka Connect Cluster"
-    version = 0.1
+    version = 0.2
 }
 
 kotlin {

@@ -2,6 +2,7 @@ package handlers
 
 import controllers.clusterStatus
 import controllers.connectorsListing
+import controllers.sendAlerts
 import data.Connect
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
@@ -23,8 +24,10 @@ internal fun connectRecursion() {
 	launch{
 
 		connect = connectApi()
+		sendAlerts()
 		delay(config.recursionInterval)
 		connectRecursion()
+
 
 	}
 
