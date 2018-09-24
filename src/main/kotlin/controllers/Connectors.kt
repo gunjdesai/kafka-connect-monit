@@ -40,6 +40,7 @@ fun checkTaskHealth(tasks: List<Tasks>, connectorName: String){
 	for (task in tasks)
 		if (task.state != WORKER_STATE.RUNNING &&
 			task.state != WORKER_STATE.PAUSED &&
-			task.state != WORKER_STATE.STOPPED)
+			task.state != WORKER_STATE.STOPPED &&
+			task.state != WORKER_STATE.UNASSIGNED)
 			taskDown(task.id, connectorName)
 }
